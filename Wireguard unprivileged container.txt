@@ -19,7 +19,7 @@ Step 5: Add wireguard to the list of modules that load at boot time
      echo "wireguard" >> /etc/modules-load.d/modules.conf
      
 Step 6: Create your LXC container
-     Proxmox offers several methods to accomplish this, I defer to your judgement on how you proceed. I used Ubuntu 20 as my container OS because wireguard is built in to the kernel on this version.
+     Proxmox offers several methods to accomplish this, I defer to your judgement on how you proceed. I used Ubuntu 20 as my container OS because wireguard is built in to the kernel on this version. (Thanks WMantly)
 
 Step 7: Install wireguard user space tools inside the unprivileged container(in ubuntu 20, please refer to the referenced tutorial if you are not using ubuntu 20)
      apt-get install --no-install-recommends wireguard-tools
