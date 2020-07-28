@@ -1,0 +1,15 @@
+In this situation, I mistakenly ran my server without all of the ZFS drives properly plugged in.
+This resulted in my zpool.cache file being corrupted. Every boot i had to use zfs mount -a, before i could fire up any LXC containers or QEMU virtual machines.
+With some help from my mentor, William Mantly, and some googling I was able to find a solution.
+This solution comes from forums.proxmox.com. I wholeheartedly reccommend you become familiar, especially when first starting out.
+
+zpool set cachefile=/etc/zfs/zpool.cache <poolname>
+this command will set the cachefile to its default location and also restores the file if it has been corrupted.
+
+update-initramfs -k all -u
+this command is to make sure that the system now knows about where the cachefile is located. It is a very powerful command with more uses than just this, but this is the command i needed at the time.
+
+reboot
+after the reboot, proxmox was able to function as normally with all of my autostarts working as intended.
+
+Thanks for reading!
