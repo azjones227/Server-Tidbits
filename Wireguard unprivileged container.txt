@@ -24,4 +24,8 @@ Step 6: Create your LXC container
 Step 7: Install wireguard user space tools inside the unprivileged container(in ubuntu 20, please refer to the referenced tutorial if you are not using ubuntu 20)
      apt-get install --no-install-recommends wireguard-tools
      
-Step 8: 
+Step 8: Test! (if this command runs correctly, then the terminal should dump you to a prompt with no error messages)
+     ip link add wg0 type wireguard
+
+At this point, you should be able to follow the instructions located at https://www.wireguard.com/quickstart/ to finish setting it up.
+Thanks for reading!
