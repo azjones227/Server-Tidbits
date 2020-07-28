@@ -8,7 +8,7 @@ Step 1: Add "unstable" to your list of sources
      printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' > /etc/apt/preferences.d/limit-unstable
      apt update
      
-Step 2: Download and install the package "pve-headers" (I assume you are using the proper repos, or you know how to use them.)(Please be advised, wireguard will not install properly without pve-headers installed)
+Step 2: Download and install the package "pve-headers" (I assume you are using the proper Proxmox repos for your setup, or you know how to use them.)(Please be advised, wireguard will not install properly without pve-headers installed)
      apt-get install pve-headers
 
 Step 3: Install wireguard (This can be combined with step 2, by using both package names in the install command)
