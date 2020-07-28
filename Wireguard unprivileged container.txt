@@ -1,0 +1,27 @@
+Reference: https://securityboulevard.com/2019/04/howto-install-wireguard-in-an-unprivileged-container-proxmox/?fbclid=IwAR1My4RFBk3W9oI5d3hJCuhqR0yu8799q0Sa-xJN73LpTxqgdY73fFz7YdU
+Before you attempt to install and run wrieguard on an lxc container, you must first prepare the kernel of the host system.
+
+Step 1: Add "unstable" to your list of sources
+     echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
+     printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' > /etc/apt/preferences.d/limit-unstable
+     apt update
+     
+Step 2: Download and install the package "pve-headers" (I assume you are using the proper repos, or you know how to use them.)(Please be advised, wireguard will not install properly without pve-headers installed)
+     apt-get install pve-headers
+
+Step 3: Install wireguard (This can be combined with step 2, by using both package names in the install command)
+     apt-get install wireguard
+
+Step 4: Test to see the the installation completed successfully (If successful, the terminal should dump you to another prompt with no errors)
+     modprobe wireguard
+
+Step 5: Add wireguard to the list of modules that load at boot time
+     echo "wireguard" >> /etc/modules-load.d/modules.conf
+     
+Step 6: Create your LXC container
+     Proxmox offers several methods to accomplish this, I defer to your judgement on how you accomplish this. I used Ubuntu 20 as my container OS because wireguard is built in to the kernel on this version.
+
+Step 7: Install wireguard user space tools inside the unprivileged container(in ubuntu 20, please refer to the referenced tutorial if you are not using ubuntu 20)
+     apt-get install --no-install-recommends wireguard-tools
+     
+Step 8: 
